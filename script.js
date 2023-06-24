@@ -55,12 +55,12 @@ function play(userChoice){
 
 
     message = convertToMessage(result, userChoice, compChoice)
-    logsDisplay.innerHTML += `<p>${message}</p>`
+    logsDisplay.innerHTML = `<p>${message}</p>`+logsDisplay.innerHTML;
 
 
 
-    compLivesDisplay.textContent = `computer lives = ${compLives}`;
-    userLivesDisplay.textContent = `User lives = ${userLives}`;
+    compLivesDisplay.textContent = `${compLives}`;
+    userLivesDisplay.textContent = `${userLives}`;
     
 
     if (userLives === 0 ){

@@ -9,21 +9,47 @@
 <body>
     <h1>Welcome to the Game</h1>
 
-    <div class="play">
-        <h2>Choose your weapon</h2>
-        <div class="buttons">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissor">Scissor</button>
+    <div class="play container">
+        <div class="human">
+            <h3>Human</h3>
+            <div class="card">
+                <div class="top">
+                    <img src="./img/user-solid-grey.svg" height="30px">
+                    <div class="Lives">
+                        <p >Lives</p>
+                        <p class="user-lives">5</p>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="rock">Rock</button>
+                    <button id="paper">Paper</button>
+                    <button id="scissor">Scissor</button>
+                </div>
+            </div>
         </div>
+
+        <div class="computer">
+            <h3>Computer</h3>
+            <div class=" card">
+                <div class="top">
+                    <img src="./img/laptop-solid-grey.svg" height="30px">
+                    <div class="Lives">
+                        <p >Lives</p>
+                        <p class="comp-lives">5</p>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="rock">Rock</button>
+                    <button class="paper">Paper</button>
+                    <button class="scissor">Scissor</button>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <div class="output">
         <h3 class="last-result">--</h3>
-        <div class="lives">
-            <p class="comp-lives">computer lives = 5</p>
-            <p class="user-lives">User lives = 5</p>
-        </div>
         <div class="logs"></div>
         
     </div>
