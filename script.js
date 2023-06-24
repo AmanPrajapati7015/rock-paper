@@ -8,14 +8,16 @@ function getComputerChoice(){
 
 
 
-// take one input form user 
-function getUserChoice(){
-    b = prompt("Choose from {rock, paper, scissor}");
-    return b.toLowerCase();
+// convert result into message
+function convertToMessage(result, userChoice, compChoice){
+    let message = (result == "won")? `You won ! ${userChoice} beats ${compChoice}`:
+                  (result =="lost")? `You lost ! ${compChoice} beats ${userChoice}`: `its a tie between ${compChoice} and ${userChoice}`;
+    return message;
 }
 
+
 // check who beats whom
-function play(compChoice, userChoice){
+function getResult(compChoice, userChoice){
     let result;
     if (userChoice == "rock"){
         result = (compChoice == "paper") ? "lost":(compChoice == "scissor")? "won":"tie";
@@ -29,37 +31,46 @@ function play(compChoice, userChoice){
     else{
         console.error("invalid input by user");
     }
-
-    let message = (result == "won")? `You won ! ${userChoice} beats ${compChoice}`:
-                  (result =="lost")? `You lost ! ${compChoice} beats ${userChoice}`: `its a tie between ${compChoice} and ${userChoice}`;
-    
-    console.group(result);              
-    console.log(message);
-
     return result;
 }
 
+
+
 let compLives = 5;
 let userLives = 5; 
-while (compLives>0 && userLives>0){
-    let result = play(getComputerChoice(), getUserChoice());
+
+function play(userChoice){
+    compChoice = getComputerChoice()
+    let result = getResult(compChoice, userChoice);
     if (result == "lost"){
         userLives--
     }
     else if(result =="won"){
         compLives--
     }
+    console.log(convertToMessage(result, userChoice, compChoice)) 
+    
     console.log(`computer lives = ${compLives}`)
     console.log(`User lives = ${userLives}`)
-    console.groupEnd();
+    
+
+//     if (userLives === 0 ){
+//         console.log("YOU LOST")
+//     }
+//     else{
+//         console.log("YOU WON")
+//     }
 }
 
-if (userLives === 0 ){
-    console.log("YOU LOST")
-}
-else{
-    console.log("YOU WON")
-}
 
 
 
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissor = document.querySelector("#scissor");
+
+
+rock.addEventListener("click", () => play("rock"));
+paper.addEventListener("click", () => play("paper"));
+scissor.addEventListener("click", () => play("scissor"))
