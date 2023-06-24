@@ -28,9 +28,6 @@ function getResult(compChoice, userChoice){
     else if (userChoice == "scissor"){
         result = (compChoice == "rock") ? "lost":(compChoice == "paper")? "won":"tie";
     }
-    else{
-        console.error("invalid input by user");
-    }
     return result;
 }
 
@@ -48,29 +45,47 @@ function play(userChoice){
     else if(result =="won"){
         compLives--
     }
-    console.log(convertToMessage(result, userChoice, compChoice)) 
+
     
-    console.log(`computer lives = ${compLives}`)
-    console.log(`User lives = ${userLives}`)
+    resultDisplay.style.opacity = "0";
+    setTimeout(function(){
+        resultDisplay.textContent = result;
+        resultDisplay.style.opacity = "100";
+    }, 200)
+
+
+    message = convertToMessage(result, userChoice, compChoice)
+    logsDisplay.innerHTML += `<p>${message}</p>`
+
+
+
+    compLivesDisplay.textContent = `computer lives = ${compLives}`;
+    userLivesDisplay.textContent = `User lives = ${userLives}`;
     
 
-//     if (userLives === 0 ){
-//         console.log("YOU LOST")
-//     }
-//     else{
-//         console.log("YOU WON")
-//     }
+    if (userLives === 0 ){
+        alert("YOU LOST")
+        location.reload()
+    }
+    else if (compLives === 0){
+        alert("YOU WON")
+        location.reload()
+    }
 }
 
 
 
 
-
+let message;
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissor = document.querySelector("#scissor");
 
+const resultDisplay = document.querySelector(".last-result");
+const logsDisplay = document.querySelector(".logs");
+const compLivesDisplay = document.querySelector(".comp-lives");
+const userLivesDisplay = document.querySelector(".user-lives");
 
 rock.addEventListener("click", () => play("rock"));
 paper.addEventListener("click", () => play("paper"));
-scissor.addEventListener("click", () => play("scissor"))
+scissor.addEventListener("click", () => play("scissor"));
