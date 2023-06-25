@@ -45,13 +45,15 @@ function getResult(compChoice, userChoice){
 
 
 function finalResult(){
+    let tempMessage ;
     if (userLives === 0 ){
-        message = 'You Lost. please play again';
+        tempMessage = 'You Lost. Please try again';
     }
     else if (compLives===0){
-        message = 'You Won. please play again';
+        tempMessage = 'You Won. Please play again';
     }
-    resultDisplay.textContent = message;
+    resultDisplay.textContent = tempMessage;
+    resultDisplay.style.opacity = "100";
     logsDisplay.innerHTML = '<button class="play-again" onclick="reload()" >Play Again</button>' + logsDisplay.innerHTML;
 
     // removes EventListener from buttons
@@ -89,17 +91,19 @@ function play(userChoice){
     // change the result of a single game on page
     resultDisplay.style.opacity = "0";
     setTimeout(function(){
+        if (userLives <= 0 || compLives <= 0) return;
         resultDisplay.textContent = result;
         resultDisplay.style.opacity = "100";
     }, 200)
-
+    
     // create the message of and logs in page
     message = convertToMessage(result, userChoice, compChoice)
     logsDisplay.innerHTML = `<p>${message}</p>`+ logsDisplay.innerHTML;
     // update lives on page
     compLivesDisplay.textContent = `${compLives}`;
     userLivesDisplay.textContent = `${userLives}`;
-    
+
+
     if (userLives <= 0 || compLives <= 0) finalResult();
 }
 
