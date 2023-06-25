@@ -44,40 +44,42 @@ function getResult(compChoice, userChoice){
 let compLives = 5;
 let userLives = 5; 
 
+
+// Plays a single game
 function play(userChoice){
+    // for highlighting user selection
+    userBtnChoice = document.querySelector(`#${userChoice}`);
+    userBtnChoice.classList.toggle("highlighted");
+    setTimeout(() => {
+        userBtnChoice.classList.toggle("highlighted");
+    }, 500)
+
+    // check result of a single game
     let compChoice = getComputerChoice()
     let result = getResult(compChoice, userChoice);
-    if (result == "lost"){
-        userLives--
-    }
-    else if(result =="won"){
-        compLives--
-    }
-
+    // update remaining Lives accordingly
+    if (result == "lost") userLives--
+    else if (result =="won") compLives--
     
+    // change the result of a single game on page
     resultDisplay.style.opacity = "0";
     setTimeout(function(){
         resultDisplay.textContent = result;
         resultDisplay.style.opacity = "100";
     }, 200)
 
-
+    // create the message of and logs in page
     message = convertToMessage(result, userChoice, compChoice)
     logsDisplay.innerHTML = `<p>${message}</p>`+logsDisplay.innerHTML;
-
-
-
+    // update lives on page
     compLivesDisplay.textContent = `${compLives}`;
     userLivesDisplay.textContent = `${userLives}`;
     
-
-
 
     // change this part to add a button saying play again and display 
     // final result inside logs
     if (userLives === 0 ){
         alert("YOU LOST") 
-
         location.reload()
     }
     else if (compLives === 0){
@@ -99,28 +101,13 @@ const userLivesDisplay = document.querySelector(".user-lives");
 
 rock.addEventListener("click", () => {
     play("rock");
-    userBtnChoice = document.querySelector("#rock");
-    userBtnChoice.classList.toggle("highlighted");
-    setTimeout(() => {
-        userBtnChoice.classList.toggle("highlighted");
-    }, 500)
 });
 
 
 paper.addEventListener("click", () => {
     play("paper");
-    userBtnChoice = document.querySelector("#paper");
-    userBtnChoice.classList.toggle("highlighted");
-    setTimeout(() => {
-        userBtnChoice.classList.toggle("highlighted");
-    }, 500)
 });
 
 scissor.addEventListener("click", () => {
     play("scissor");
-    userBtnChoice = document.querySelector("#scissor");
-    userBtnChoice.classList.toggle("highlighted");
-    setTimeout(() => {
-        userBtnChoice.classList.toggle("highlighted");
-    }, 500)
 });
