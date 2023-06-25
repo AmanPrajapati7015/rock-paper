@@ -6,12 +6,16 @@ function getComputerChoice(){
     
     // highlight the Selection of computer
     compBtnChoice  = document.querySelector(`.${compChoice}`);
-    compBtnChoice.classList.toggle("highlighted");
+    compBtnChoice.classList.add("highlighted");
     setTimeout(() => {
-        compBtnChoice.classList.toggle("highlighted");
+        compBtnChoice.classList.remove("highlighted");
     }, 500)
 
     return compChoice;
+}
+
+function reload(){
+    location.reload();
 }
 
 
@@ -40,6 +44,26 @@ function getResult(compChoice, userChoice){
 }
 
 
+function finalResult(){
+    if (userLives === 0 ){
+        message = 'You Lost. please play again';
+    }
+    else if (compLives===0){
+        message = 'You Won. please play again';
+    }
+    resultDisplay.textContent = message;
+    logsDisplay.innerHTML = '<button class="play-again" onclick="reload()" >Play Again</button>' + logsDisplay.innerHTML;
+
+    // removes EventListener from buttons
+    arr = [rock, paper, scissor];
+    let temp;
+    arr.forEach(element => {
+        temp = element.cloneNode(true);
+        element.parentNode.replaceChild(temp, element);
+        temp.classList.remove("highlighted"); 
+    });
+}
+
 
 let compLives = 5;
 let userLives = 5; 
@@ -47,11 +71,12 @@ let userLives = 5;
 
 // Plays a single game
 function play(userChoice){
+
     // for highlighting user selection
     userBtnChoice = document.querySelector(`#${userChoice}`);
-    userBtnChoice.classList.toggle("highlighted");
+    userBtnChoice.classList.add("highlighted");
     setTimeout(() => {
-        userBtnChoice.classList.toggle("highlighted");
+        userBtnChoice.classList.remove("highlighted");
     }, 500)
 
     // check result of a single game
@@ -70,22 +95,12 @@ function play(userChoice){
 
     // create the message of and logs in page
     message = convertToMessage(result, userChoice, compChoice)
-    logsDisplay.innerHTML = `<p>${message}</p>`+logsDisplay.innerHTML;
+    logsDisplay.innerHTML = `<p>${message}</p>`+ logsDisplay.innerHTML;
     // update lives on page
     compLivesDisplay.textContent = `${compLives}`;
     userLivesDisplay.textContent = `${userLives}`;
     
-
-    // change this part to add a button saying play again and display 
-    // final result inside logs
-    if (userLives === 0 ){
-        alert("YOU LOST") 
-        location.reload()
-    }
-    else if (compLives === 0){
-        alert("YOU WON")
-        location.reload()
-    }
+    if (userLives <= 0 || compLives <= 0) finalResult();
 }
 
 
@@ -99,15 +114,6 @@ const logsDisplay = document.querySelector(".logs");
 const compLivesDisplay = document.querySelector(".comp-lives");
 const userLivesDisplay = document.querySelector(".user-lives");
 
-rock.addEventListener("click", () => {
-    play("rock");
-});
-
-
-paper.addEventListener("click", () => {
-    play("paper");
-});
-
-scissor.addEventListener("click", () => {
-    play("scissor");
-});
+rock.addEventListener("click", () => play("rock"));
+paper.addEventListener("click", () => play("paper"));
+scissor.addEventListener("click", () => play("scissor"));
