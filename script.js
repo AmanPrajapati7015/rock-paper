@@ -4,6 +4,9 @@ function getComputerChoice(){
     a = Math.floor(Math.random() * 3);
     let compChoice = (a == 0)? "rock":(a == 1)? "paper": "scissor";
     return compChoice;
+
+    // highlight the Selection of computer
+    
 }
 
 
@@ -63,8 +66,13 @@ function play(userChoice){
     userLivesDisplay.textContent = `${userLives}`;
     
 
+
+
+    // change this part to add a button saying play again and display 
+    // final result inside logs
     if (userLives === 0 ){
-        alert("YOU LOST")
+        alert("YOU LOST") 
+
         location.reload()
     }
     else if (compLives === 0){
@@ -72,8 +80,6 @@ function play(userChoice){
         location.reload()
     }
 }
-
-
 
 
 let message;

@@ -12,7 +12,29 @@ body, button{
     transition: opacity 200ms ;
 }
 
+.comp-lives, .user-lives{
+    font-size: 25px;
+    font-weight: 700;
+}
 
+/* Sizing */
+h1{
+    font-size: 45px;
+    margin: 30px 0 50px 0;
+}
+
+h3{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.logs p{
+    font-size: 18px;
+    color: rgb(255, 228, 26);
+    margin-bottom: 5px;
+}
+
+
+/* Positioning */
 
 .container{
     padding: 10px;
@@ -25,30 +47,27 @@ body, button{
 .card{
     background-color: black;
     width: 400px;
-    border: white 1px solid;
-    padding: 20px;
+    border: white 2px solid;
+    padding: 30px;
     border-radius: 20px;
-    margin: 20px;
 }
 
 
 .card .top{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     align-items: center;
 }
 
 .card .buttons{
     display: flex;
-    gap: 10px;
-    justify-content: space-between;
+    gap: 30px;
 }
 
 .card .buttons button{
-    padding: 40px 5px;
+    padding: 15px 0;
     border-radius: 6px;
-    font-size: 20px;
-    flex: 1 0 auto;
-
+    font-size: 25px;
+    flex: 1 1 0;
 }
