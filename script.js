@@ -3,10 +3,15 @@
 function getComputerChoice(){
     a = Math.floor(Math.random() * 3);
     let compChoice = (a == 0)? "rock":(a == 1)? "paper": "scissor";
-    return compChoice;
-
-    // highlight the Selection of computer
     
+    // highlight the Selection of computer
+    compBtnChoice  = document.querySelector(`.${compChoice}`);
+    compBtnChoice.classList.toggle("highlighted");
+    setTimeout(() => {
+        compBtnChoice.classList.toggle("highlighted");
+    }, 500)
+
+    return compChoice;
 }
 
 
@@ -40,7 +45,7 @@ let compLives = 5;
 let userLives = 5; 
 
 function play(userChoice){
-    compChoice = getComputerChoice()
+    let compChoice = getComputerChoice()
     let result = getResult(compChoice, userChoice);
     if (result == "lost"){
         userLives--
@@ -82,7 +87,7 @@ function play(userChoice){
 }
 
 
-let message;
+let message, compBtnChoice, userBtnChoice;
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissor = document.querySelector("#scissor");
@@ -92,6 +97,30 @@ const logsDisplay = document.querySelector(".logs");
 const compLivesDisplay = document.querySelector(".comp-lives");
 const userLivesDisplay = document.querySelector(".user-lives");
 
-rock.addEventListener("click", () => play("rock"));
-paper.addEventListener("click", () => play("paper"));
-scissor.addEventListener("click", () => play("scissor"));
+rock.addEventListener("click", () => {
+    play("rock");
+    userBtnChoice = document.querySelector("#rock");
+    userBtnChoice.classList.toggle("highlighted");
+    setTimeout(() => {
+        userBtnChoice.classList.toggle("highlighted");
+    }, 500)
+});
+
+
+paper.addEventListener("click", () => {
+    play("paper");
+    userBtnChoice = document.querySelector("#paper");
+    userBtnChoice.classList.toggle("highlighted");
+    setTimeout(() => {
+        userBtnChoice.classList.toggle("highlighted");
+    }, 500)
+});
+
+scissor.addEventListener("click", () => {
+    play("scissor");
+    userBtnChoice = document.querySelector("#scissor");
+    userBtnChoice.classList.toggle("highlighted");
+    setTimeout(() => {
+        userBtnChoice.classList.toggle("highlighted");
+    }, 500)
+});

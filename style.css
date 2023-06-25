@@ -17,6 +17,16 @@ body, button{
     font-weight: 700;
 }
 
+.highlighted{
+    border : rgb(5, 255, 234) 2px solid; 
+    transform: scale(1.2);
+    
+}
+.highlighted p{
+    color: rgb(5, 255, 234);
+}
+
+
 /* Sizing */
 h1{
     font-size: 45px;
@@ -39,7 +49,7 @@ h3{
 .container{
     padding: 10px;
     display: flex;
-    gap: 30px;
+    gap: 40px;
     justify-content: center;
     margin: 30px auto;
     flex-wrap: wrap;
